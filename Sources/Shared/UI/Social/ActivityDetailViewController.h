@@ -11,8 +11,9 @@
 #import "EGORefreshTableHeaderView.h"
 #import "MessageComposerViewController.h"
 #import "eXoViewController.h"
+#import "ActivityDetailMessageTableViewCell.h"
+#import "ActivityDetailCommentTableViewCell.h"
 
-@class ActivityDetailMessageTableViewCell;
 @class SocialActivity;
 @class SocialUserProfile;
 
@@ -20,7 +21,7 @@
 #define kFontForMessage [UIFont fontWithName:@"Helvetica" size:13]
 
 
-@interface ActivityDetailViewController : eXoViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, SocialProxyDelegate, EGORefreshTableHeaderDelegate, SocialMessageComposerDelegate, UIAlertViewDelegate, UIWebViewDelegate>{
+@interface ActivityDetailViewController : eXoViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, SocialProxyDelegate, EGORefreshTableHeaderDelegate, SocialMessageComposerDelegate, UIAlertViewDelegate, UIWebViewDelegate,ActivityDetailMessageTableViewCellDelegate,ActivityDetailCommentTableViewCellDelegate>{
     
     IBOutlet UITableView*                   _tblvActivityDetail;
 //    IBOutlet UINavigationBar*               _navigationBar;
@@ -63,5 +64,6 @@
  */
 - (void)didFinishedLikeAction;
 - (void)didFailedLikeAction;
+-(void) showDetailUserProfile: (NSString *) userId;
 
 @end

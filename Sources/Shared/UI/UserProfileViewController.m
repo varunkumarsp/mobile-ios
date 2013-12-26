@@ -11,6 +11,9 @@
 #import "SocialRestConfiguration.h"
 #import "AvatarView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "UserProfileDetailViewController_iPhone.h"
+
+
 
 @interface UserProfileView : UIView 
 
@@ -61,6 +64,7 @@
 @synthesize userProfileProxy = _userProfileProxy;
 @synthesize avatarView = _avatarView;
 @synthesize fullNameLabel = _fullNameLabel;
+@synthesize delegate;
 
 - (void)dealloc {
     [_username release];
@@ -68,6 +72,7 @@
     [_avatarView release];
     [_fullNameLabel release];
     [_userProfileProxy release];
+    delegate = nil;
     [super dealloc];
 }
 
@@ -103,6 +108,9 @@
     self.fullNameLabel.adjustsFontSizeToFitWidth = YES;
     [self.view addSubview:self.fullNameLabel];
     
+    UITapGestureRecognizer *tabGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tabOnProfileView)];
+    [self.view addGestureRecognizer:tabGesture];
+    
 }
 
 - (void)viewDidLoad
@@ -114,6 +122,14 @@
 {
     [super viewDidUnload];
 }
+#pragma mark - tab gesture
+-(void) tabOnProfileView {
+    NSLog(@"tab");
+    if (delegate && [delegate respondsToSelector:@selector(showUserProfileDetailWithUserId:)]) {
+        [delegate showUserProfileDetailWithUserId:self.userProfile.remoteId];
+    }
+}
+
 
 #pragma mark - proxy management 
 - (void)proxyDidFinishLoading:(SocialProxy *)proxy {

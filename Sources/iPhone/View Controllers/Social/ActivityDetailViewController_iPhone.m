@@ -21,6 +21,7 @@
 #import "ActivityDetailLikeTableViewCell.h"
 #import "ActivityDetailCommentTableViewCell.h"
 #import "EmptyView.h"
+#import "UserProfileDetailViewController_iPhone.h"
 
 #define kLikeCellHeight (self.socialActivity.totalNumberOfLikes > 0 ? 70.0 : 50.0)
 #define kNoCommentCellHeight 200.0
@@ -208,6 +209,7 @@
             SocialComment* socialComment = [self.socialActivity.comments objectAtIndex:indexPath.row];
             [cell setSocialComment:socialComment];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.delegate = self;
             return cell;
         }
     } else {
@@ -257,6 +259,22 @@
 - (void)setSocialActivity:(SocialActivity *)socialActivity {
     [super setSocialActivity:socialActivity];
     self.likeViewCell.socialActivity = socialActivity;
+}
+
+-(void) showDetailUserProfile:(NSString *)userId
+{
+    UserProfileDetailViewController_iPhone *profile = [[UserProfileDetailViewController_iPhone alloc] initWithNibName:@"UserProfileDetailViewController_iPhone" bundle:nil];
+    profile.userId = userId;
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:profile animated:YES];
+}
+
+#pragma mark- CommentDetailCell Delegate
+
+-(void) showDetailUserProfileFromComment:(NSString *)userId
+{
+    UserProfileDetailViewController_iPhone *profile = [[UserProfileDetailViewController_iPhone alloc] initWithNibName:@"UserProfileDetailViewController_iPhone" bundle:nil];
+    profile.userId = userId;
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:profile animated:YES];
 }
 
 @end

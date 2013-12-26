@@ -747,6 +747,10 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
             [(ActivityPictureTableViewCell *)cell resetImageAttached];
         }
     }
+    
+    [cell createTabRecognizer];
+    cell.activityBasicCellDelegate = self;
+    
     cell.backgroundColor = [UIColor clearColor];
     return cell;
 }
@@ -1042,6 +1046,14 @@ static NSString* kCellIdentifierCalendar = @"ActivityCalendarCell";
     NSString *plfVersionStr = [[NSUserDefaults standardUserDefaults] valueForKey:EXO_PREFERENCE_VERSION_SERVER];
     
     //no auto load more for plf 4.0.0
-    return [plfVersionStr rangeOfString:@"4.0.0"].location == NSNotFound; }
+    return [plfVersionStr rangeOfString:@"4.0.0"].location == NSNotFound;
+}
+
+#pragma mark - ActivityBasicTableCellDelegate
+-(void) showDetailUserProfile:(NSString *)userId
+{
+    //Child classes will override this function
+    
+}
 
 @end

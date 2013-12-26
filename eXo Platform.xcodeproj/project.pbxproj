@@ -148,6 +148,11 @@
 		3D34F8BF185FF3A9006065DE /* Icon80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D34F8BC185FF3A9006065DE /* Icon80x80.png */; };
 		3D34F8C0185FF3A9006065DE /* Icon40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D34F8BD185FF3A9006065DE /* Icon40x40.png */; };
 		3D34F8C1185FF3A9006065DE /* Icon100x100.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D34F8BE185FF3A9006065DE /* Icon100x100.png */; };
+		3D34F9F5186965FF006065DE /* UserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D34F9F4186965FF006065DE /* UserProfile.m */; };
+		3D34F9F91869663E006065DE /* UserProfileProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D34F9F81869663E006065DE /* UserProfileProxy.m */; };
+		3D34F9FC18696EB9006065DE /* UserProfileDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D34F9FB18696EB9006065DE /* UserProfileDetailViewController.m */; };
+		3D34FA0018697898006065DE /* UserProfileDetailViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D34F9FE18697898006065DE /* UserProfileDetailViewController_iPhone.m */; };
+		3D34FA0118697898006065DE /* UserProfileDetailViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D34F9FF18697898006065DE /* UserProfileDetailViewController_iPhone.xib */; };
 		3D7E19801855AB8300CCF6A8 /* UIImage+BlankImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7E197F1855AB8300CCF6A8 /* UIImage+BlankImage.m */; };
 		3D8ED7F4184DBB3F00BEA544 /* UINavigationBar+ BackButtonDisplayFix.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8ED7F3184DBB3E00BEA544 /* UINavigationBar+ BackButtonDisplayFix.m */; };
 		46073660137BD27400D77DB9 /* UINavigationBar+eXoCustomIphone.m in Sources */ = {isa = PBXBuildFile; fileRef = 4607365F137BD27400D77DB9 /* UINavigationBar+eXoCustomIphone.m */; };
@@ -1129,6 +1134,15 @@
 		3D34F8BC185FF3A9006065DE /* Icon80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon80x80.png; sourceTree = "<group>"; };
 		3D34F8BD185FF3A9006065DE /* Icon40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon40x40.png; sourceTree = "<group>"; };
 		3D34F8BE185FF3A9006065DE /* Icon100x100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon100x100.png; sourceTree = "<group>"; };
+		3D34F9F3186965FF006065DE /* UserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfile.h; sourceTree = "<group>"; };
+		3D34F9F4186965FF006065DE /* UserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfile.m; sourceTree = "<group>"; };
+		3D34F9F71869663E006065DE /* UserProfileProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileProxy.h; sourceTree = "<group>"; };
+		3D34F9F81869663E006065DE /* UserProfileProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileProxy.m; sourceTree = "<group>"; };
+		3D34F9FA18696EB9006065DE /* UserProfileDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileDetailViewController.h; sourceTree = "<group>"; };
+		3D34F9FB18696EB9006065DE /* UserProfileDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileDetailViewController.m; sourceTree = "<group>"; };
+		3D34F9FD18697898006065DE /* UserProfileDetailViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileDetailViewController_iPhone.h; sourceTree = SOURCE_ROOT; };
+		3D34F9FE18697898006065DE /* UserProfileDetailViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileDetailViewController_iPhone.m; sourceTree = SOURCE_ROOT; };
+		3D34F9FF18697898006065DE /* UserProfileDetailViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileDetailViewController_iPhone.xib; sourceTree = SOURCE_ROOT; };
 		3D7E197E1855AB8300CCF6A8 /* UIImage+BlankImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BlankImage.h"; sourceTree = "<group>"; };
 		3D7E197F1855AB8300CCF6A8 /* UIImage+BlankImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BlankImage.m"; sourceTree = "<group>"; };
 		3D8ED7F2184DBB3E00BEA544 /* UINavigationBar+ BackButtonDisplayFix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+ BackButtonDisplayFix.h"; sourceTree = "<group>"; };
@@ -2255,6 +2269,24 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		3D34F9F2186965FF006065DE /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				3D34F9F3186965FF006065DE /* UserProfile.h */,
+				3D34F9F4186965FF006065DE /* UserProfile.m */,
+			);
+			path = UserProfile;
+			sourceTree = "<group>";
+		};
+		3D34F9F61869663E006065DE /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				3D34F9F71869663E006065DE /* UserProfileProxy.h */,
+				3D34F9F81869663E006065DE /* UserProfileProxy.m */,
+			);
+			path = UserProfile;
+			sourceTree = "<group>";
+		};
 		460736D3137C2F1C00D77DB9 /* Authenticate */ = {
 			isa = PBXGroup;
 			children = (
@@ -3154,6 +3186,9 @@
 				46A08CD71447503100D53314 /* ActivityLinkDisplayViewController_iPhone.h */,
 				46A08CD81447503100D53314 /* ActivityLinkDisplayViewController_iPhone.m */,
 				46A08CD91447503100D53314 /* ActivityLinkDisplayViewController_iPhone.xib */,
+				3D34F9FD18697898006065DE /* UserProfileDetailViewController_iPhone.h */,
+				3D34F9FE18697898006065DE /* UserProfileDetailViewController_iPhone.m */,
+				3D34F9FF18697898006065DE /* UserProfileDetailViewController_iPhone.xib */,
 			);
 			name = Social;
 			path = ActivityStream;
@@ -3990,6 +4025,8 @@
 				46A03A1913A79F0C00E71AF9 /* Social */,
 				A65EAF48159AB64300E598E0 /* UserProfileViewController.h */,
 				A65EAF49159AB64400E598E0 /* UserProfileViewController.m */,
+				3D34F9FA18696EB9006065DE /* UserProfileDetailViewController.h */,
+				3D34F9FB18696EB9006065DE /* UserProfileDetailViewController.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -4112,6 +4149,7 @@
 		8947352413375EF200B0AD11 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3D34F9F2186965FF006065DE /* UserProfile */,
 				4608C349142092030054E59C /* Document */,
 				46ADAEE6140699A3005ABA79 /* Dashboard */,
 				462B62A313DEF7600050FCBC /* ServerConfiguration */,
@@ -4123,6 +4161,7 @@
 		8947352513375EF200B0AD11 /* Proxies */ = {
 			isa = PBXGroup;
 			children = (
+				3D34F9F61869663E006065DE /* UserProfile */,
 				57FB19C915FD9670001F5C20 /* Configuration */,
 				4608C34A1420921D0054E59C /* Document */,
 				46ADAD111403E3C0005ABA79 /* Dashboard */,
@@ -4913,6 +4952,7 @@
 				A6FCDF5215B7C05C00128EA6 /* 11-x.png in Resources */,
 				A6FCDF5315B7C05C00128EA6 /* 11-x@2x.png in Resources */,
 				A6FCDF5415B7C05C00128EA6 /* 19-check.png in Resources */,
+				3D34FA0118697898006065DE /* UserProfileDetailViewController_iPhone.xib in Resources */,
 				A6FCDF5515B7C05C00128EA6 /* 19-check@2x.png in Resources */,
 				A66B7F2715AAC1D700218C06 /* Localizable.strings in Resources */,
 				A6A0277015B962F60090342B /* activity-stream-filter-tabbar-bg.png in Resources */,
@@ -5090,6 +5130,7 @@
 				894733AA13370B4500B0AD11 /* Gadget.m in Sources */,
 				894733AB13370B4500B0AD11 /* GadgetDisplayViewController_iPhone.m in Sources */,
 				894733AE13370B4500B0AD11 /* AuthenticateViewController_iPhone.m in Sources */,
+				3D34F9F5186965FF006065DE /* UserProfile.m in Sources */,
 				894733B713370C3600B0AD11 /* AppDelegate_iPad.m in Sources */,
 				894733BA13370C9800B0AD11 /* AppDelegate_iPhone.m in Sources */,
 				894734ED1337139800B0AD11 /* AsyncSocket.m in Sources */,
@@ -5105,6 +5146,7 @@
 				7C50D4C9136F187B0011280D /* DDXMLNode.m in Sources */,
 				7C50D4CC136F19000011280D /* NSStringAdditions.m in Sources */,
 				7C3BD1A21370FE1700380828 /* DashboardViewController_iPad.m in Sources */,
+				3D34F9FC18696EB9006065DE /* UserProfileDetailViewController.m in Sources */,
 				46CAF73E13798D230017C959 /* HomeStyleSheet.m in Sources */,
 				464FC9EC137AD40B00B32A58 /* CustomBackgroundForCell_iPhone.m in Sources */,
 				46073660137BD27400D77DB9 /* UINavigationBar+eXoCustomIphone.m in Sources */,
@@ -5197,6 +5239,7 @@
 				46CCF2331457239C0039CEAC /* GadgetItem.m in Sources */,
 				46CCF2CA14580FD00039CEAC /* GadgetsProxy.m in Sources */,
 				1FCEDED61458021C0058C80F /* eXoViewController.m in Sources */,
+				3D34FA0018697898006065DE /* UserProfileDetailViewController_iPhone.m in Sources */,
 				1F20AC4114590BBA0068A2CB /* ActivityForumTableViewCell.m in Sources */,
 				1F20ACE2145968310068A2CB /* ActivityForumDetailMessageTableViewCell.m in Sources */,
 				1FD02F97145A8C1500A36840 /* ActivityWikiTableViewCell.m in Sources */,
@@ -5248,6 +5291,7 @@
 				A69B049F157F0F1C003DDFDF /* UIView+Positioning.m in Sources */,
 				A69B04A0157F0F1C003DDFDF /* UIView+Size.m in Sources */,
 				A69B04AE157F103D003DDFDF /* JMSelectionView.m in Sources */,
+				3D34F9F91869663E006065DE /* UserProfileProxy.m in Sources */,
 				A69B04AF157F103D003DDFDF /* JMTabContainer.m in Sources */,
 				A69B04B0157F103D003DDFDF /* JMTabItem.m in Sources */,
 				A69B04B1157F103D003DDFDF /* JMTabView.m in Sources */,

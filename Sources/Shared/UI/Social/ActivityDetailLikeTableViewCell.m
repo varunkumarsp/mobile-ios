@@ -13,6 +13,8 @@
 #import "SocialActivity.h"
 #import "ActivityDetailViewController.h"
 #import "LanguageHelper.h"
+#import "UserProfileDetailViewController_iPhone.h"
+#import "AppDelegate_iPhone.h"
 
 
 #define kSeparatorLineLeftMargin 20.0
@@ -200,6 +202,11 @@
             [self.contentView addSubview:imageView]; // add the avatar view to the content view
         }
         imageView.userProfile = user;
+        
+        //Add tap recognizer
+        imageView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tabHandle:)];
+        [imageView addGestureRecognizer:tapRecognizer];
     }
     
     [self adjustAvatarViewFrames:animateIfNeeded];
@@ -270,6 +277,24 @@
 
 - (void)activityIndicatorToLikeButton {
     [UIView transitionFromView:self.indicatorForLikeButton toView:self.btnLike duration:0 options:UIViewAnimationOptionTransitionNone completion:NULL];
+}
+
+#pragma mark - gesture recognizer method
+-(void) tabHandle: (UITapGestureRecognizer *) tapRecognizer
+{
+    AvatarView *avatar = (AvatarView *)tapRecognizer.view;
+    [self showDetailUserProfile:avatar.userProfile.remoteId];
+}
+
+-(void) showDetailUserProfile:(NSString *)userId
+{
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        
+    } else {
+        UserProfileDetailViewController_iPhone *profile = [[UserProfileDetailViewController_iPhone alloc] initWithNibName:@"UserProfileDetailViewController_iPhone" bundle:nil];
+        profile.userId = userId;
+        [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:profile animated:YES];
+    }
 }
 
 @end

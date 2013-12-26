@@ -18,8 +18,8 @@
 #import "SettingsViewController.h"
 #import "LanguageHelper.h"
 #import "AppDelegate_iPhone.h"
-#import "UserProfileViewController.h"
 #import "UserPreferencesManager.h"
+#import "UserProfileDetailViewController_iPhone.h"
 
 #define kUserProfileViewHeight 70.0
 
@@ -138,6 +138,7 @@
     profileFrame.size.height = kUserProfileViewHeight;
     if (!_userProfileViewController) {
         _userProfileViewController = [[UserProfileViewController alloc] initWithFrame:profileFrame];
+        _userProfileViewController.delegate = self;
     }
     _userProfileViewController.username = [SocialRestConfiguration sharedInstance].username;
     [_userProfileViewController startUpdateCurrentUserProfile];
@@ -365,6 +366,15 @@
     [_revealView.contentView willPopNavigationItemAnimated:animated];
 }
 
+#pragma mark - UserProfile Delegate
+-(void) showUserProfileDetailWithUserId : (NSString *) userId {
+    UserProfileDetailViewController_iPhone *profileDetail = [[UserProfileDetailViewController_iPhone alloc] initWithNibName:@"UserProfileDetailViewController_iPhone" bundle:nil];
+    profileDetail.userId = userId;
+    [self setRootViewController:profileDetail animated:YES];
+    [profileDetail release];
+    [_revealView revealSidebar:NO];
+    
+}
 
 #pragma mark - change language management
 

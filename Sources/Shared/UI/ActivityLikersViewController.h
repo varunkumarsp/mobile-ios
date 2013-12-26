@@ -19,5 +19,6 @@
 
 - (void)updateLikerViews;
 - (void)updateListOfLikers;
+-(void) showDetailUserProfile:(NSString *)userId;
 
 @end

@@ -18,7 +18,7 @@
 @class SocialActivity;
 @class ActivityDetail;
 @class AvatarView;
-
+@protocol ActivityDetailMessageTableViewCellDelegate;
 
 
 @interface ActivityDetailMessageTableViewCell : UITableViewCell {
@@ -37,7 +37,7 @@
 }
 
 @property (nonatomic, retain) SocialActivity *socialActivity;
-
+@property (nonatomic, assign) id<ActivityDetailMessageTableViewCellDelegate> delegate;
 @property (retain, nonatomic) IBOutlet UILabel* lbMessage;
 @property (retain, nonatomic) IBOutlet UILabel* lbDate;
 @property (retain, nonatomic) IBOutlet UILabel* lbName;
@@ -54,5 +54,12 @@
 - (void)setSocialActivityDetail:(SocialActivity *)socialActivityDetail;
 - (void)updateSizeToFitSubViews;
 - (void)updateLabelsWithNewLanguage;
+-(void) createTabRecognizer;
+
+@end
+
+@protocol ActivityDetailMessageTableViewCellDelegate <NSObject>
+
+-(void) showDetailUserProfile: (NSString *) userId;
 
 @end

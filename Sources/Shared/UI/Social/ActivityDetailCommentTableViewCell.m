@@ -14,6 +14,8 @@
 #import "defines.h"
 #import "NSString+HTML.h"
 #import "ActivityHelper.h"
+#import "AvatarView.h"
+#import "SocialActivity.h"
 
 @implementation ActivityDetailCommentTableViewCell
 
@@ -23,6 +25,8 @@
 @synthesize webViewForContent = _webViewForContent;
 @synthesize extraDelegateForWebView;
 @synthesize width;
+@synthesize socialProfile;
+@synthesize delegate;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -104,10 +108,19 @@
         tmp = [NSString stringWithFormat:@"%@%@",domainName,tmp];
     }
     
-    
-    _imgvAvatar.imageURL = [NSURL URLWithString:tmp];  
+    [_imgvAvatar setImageURL: [NSURL URLWithString:tmp]];
+    socialProfile = socialComment.userProfile;
     _lbName.text = [socialComment.userProfile.fullName copy];
+    //Add tap recognizer
+    _imgvAvatar.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tabHandle:)];
+    [_imgvAvatar addGestureRecognizer:tapRecognizer];
+    [tapRecognizer release];
     
+    _lbName.userInteractionEnabled = YES;
+    tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tabHandle:)];
+    [_lbName addGestureRecognizer:tapRecognizer];
+    [tapRecognizer release];
     
     NSString *htmlStr = [NSString stringWithFormat:@"<html><head><style>body{background-color:transparent;color:#808080;font-family:\"Helvetica\";font-size:13;word-wrap: break-word;} a:link{color: #115EAD; text-decoration: none; font-weight: bold;}</style> </head><body>%@</body></html>",socialComment.text ? socialComment.text : @""];
     
@@ -136,6 +149,13 @@
         return [self.extraDelegateForWebView webView:webView shouldStartLoadWithRequest:request navigationType:navigationType];
     } else {
         return NO;
+    }
+}
+
+-(void) tabHandle: (UITapGestureRecognizer *) tapRecognizer
+{
+    if (delegate && [delegate respondsToSelector:@selector(showDetailUserProfileFromComment:)]) {
+        [delegate showDetailUserProfileFromComment:socialProfile.remoteId ];
     }
 }
 

@@ -328,6 +328,8 @@
         _activityDetailCell.selectionStyle = UITableViewCellSelectionStyleNone;
         _activityDetailCell.imgType.image = [UIImage imageNamed:_iconType];
         [_activityDetailCell setSocialActivityDetail:self.socialActivity];
+        [_activityDetailCell createTabRecognizer];
+        _activityDetailCell.delegate =self;
         [_activityDetailCell retain];
     }
     

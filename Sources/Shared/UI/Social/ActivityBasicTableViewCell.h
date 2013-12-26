@@ -15,7 +15,7 @@
 @class SocialActivity;
 @class ActivityStreamBrowseViewController;
 @class SocialUserProfile;
-
+@protocol ActivityBasicTableViewCellDelegate;
 
 @interface ActivityBasicTableViewCell : UITableViewCell {
     
@@ -46,6 +46,7 @@
 @property (retain, nonatomic) IBOutlet UILabel* lbDate;
 @property (retain, nonatomic) IBOutlet UILabel* lbName;
 @property (retain, nonatomic) TTStyledTextLabel   *htmlMessage;
+@property (assign, nonatomic) id<ActivityBasicTableViewCellDelegate> activityBasicCellDelegate;
 
 @property NSInteger activityType;
 
@@ -65,5 +66,12 @@
 - (void)btnLikeAction:(UIButton *)sender;
 - (void)btnCommentAction:(UIButton *)sender;
 
+-(void) createTabRecognizer;
+
+@end
+
+@protocol ActivityBasicTableViewCellDelegate <NSObject>
+
+-(void) showDetailUserProfile : (NSString *) userId;
 
 @end

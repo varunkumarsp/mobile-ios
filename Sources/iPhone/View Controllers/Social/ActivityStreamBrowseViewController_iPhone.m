@@ -19,6 +19,7 @@
 #import "JTRevealSidebarView.h"
 #import "JTNavigationView.h"
 #import "UIImage+BlankImage.h"
+#import "UserProfileDetailViewController_iPhone.h"
 
 
 @implementation ActivityStreamBrowseViewController_iPhone
@@ -117,6 +118,13 @@
     //[_revealView revealSidebar:NO];
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:_activityDetailViewController animated:YES];
 
+}
+
+-(void) showDetailUserProfile:(NSString *)userId
+{
+    UserProfileDetailViewController_iPhone *userProfile = [[UserProfileDetailViewController_iPhone alloc] initWithNibName:@"UserProfileDetailViewController_iPhone" bundle:nil];
+    userProfile.userId = userId;
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:userProfile animated:YES];
 }
 
 

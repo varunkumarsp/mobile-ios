@@ -22,6 +22,7 @@
 @synthesize btnLike = _btnLike, btnComment = _btnComment, imgvMessageBg=_imgvMessageBg, socialActivytyStream = _socialActivytyStream, delegate = _delegate;
 @synthesize activityType = _activityType;
 @synthesize htmlMessage = _htmlMessage;
+@synthesize activityBasicCellDelegate;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -71,7 +72,19 @@
     [_delegate postACommentOnActivity:_socialActivytyStream.activityId];
 } 
 
-
+-(void) createTabRecognizer
+{
+    //Add gesture to avatar and Username label
+    _imgvAvatar.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tabHandle:)];
+    [_imgvAvatar addGestureRecognizer:tapRecognizer];
+    [tapRecognizer release];
+    
+    _lbName.userInteractionEnabled = YES;
+    tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tabHandle:)];
+    [_lbName addGestureRecognizer:tapRecognizer];
+    [tapRecognizer release];
+}
 
 - (void)dealloc
 {
@@ -260,6 +273,13 @@
 }
 
 
+#pragma mark - tap handle
 
+-(void) tabHandle: (UITapGestureRecognizer *) tapRecognizer
+{
+    if (activityBasicCellDelegate && [activityBasicCellDelegate respondsToSelector:@selector(showDetailUserProfile:)]) {
+        [activityBasicCellDelegate showDetailUserProfile:_socialActivytyStream.posterIdentity.remoteId];
+    }
+}
 
 @end

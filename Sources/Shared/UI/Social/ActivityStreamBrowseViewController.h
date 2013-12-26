@@ -15,6 +15,7 @@
 #import "SocialPictureAttach.h"
 #import "eXoViewController.h"
 #import "ActivityStreamTabbar.h"
+#import "ActivityBasicTableViewCell.h"
 
 typedef enum {
     ActivityActionLoad       = 0, // Load activities
@@ -30,7 +31,7 @@ typedef enum {
 @class ActivityDetailViewController;
 @class SocialUserProfile;
 
-@interface ActivityStreamBrowseViewController : eXoViewController <EGORefreshTableHeaderDelegate, SocialProxyDelegate, SocialMessageComposerDelegate, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UIAlertViewDelegate, UIScrollViewDelegate, JMTabViewDelegate>
+@interface ActivityStreamBrowseViewController : eXoViewController <EGORefreshTableHeaderDelegate, SocialProxyDelegate, SocialMessageComposerDelegate, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UIAlertViewDelegate, UIScrollViewDelegate, JMTabViewDelegate,ActivityBasicTableViewCellDelegate>
 {
     IBOutlet UITableView*                   _tblvActivityStream;
     
@@ -69,4 +70,5 @@ typedef enum {
 - (void)showHudForUpload;
 - (UITableView*) tblvActivityStream;
 //- (float)getHeightForText:(NSString *)text width:(float)width;
+-(void) showDetailUserProfile:(NSString *)userId;
 @end

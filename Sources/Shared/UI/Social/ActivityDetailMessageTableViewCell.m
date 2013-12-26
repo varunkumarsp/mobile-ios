@@ -21,6 +21,7 @@
 @synthesize lbMessage=_lbMessage, lbDate=_lbDate, lbName=_lbName, imgvAvatar=_imgvAvatar;
 @synthesize webViewForContent = _webViewForContent;
 @synthesize webViewComment =  _webViewComment;
+@synthesize delegate;
 
 @synthesize imgType = _imgType;
 @synthesize imgvAttach = _imgvAttach;
@@ -143,5 +144,26 @@
     [self setSocialActivityDetail:self.socialActivity];
 }
 
+#pragma mark - Geture recognizer method
+-(void) createTabRecognizer
+{
+    //Add gesture to avatar and Username label
+    _imgvAvatar.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tabHandle:)];
+    [_imgvAvatar addGestureRecognizer:tapRecognizer];
+    [tapRecognizer release];
+    
+    _lbName.userInteractionEnabled = YES;
+    tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tabHandle:)];
+    [_lbName addGestureRecognizer:tapRecognizer];
+    [tapRecognizer release];
+}
+
+-(void) tabHandle: (UITapGestureRecognizer *) tapRecognizer
+{
+    if (delegate && [delegate respondsToSelector:@selector(showDetailUserProfile:)]) {
+        [delegate showDetailUserProfile:_socialActivity.posterIdentity.remoteId ];
+    }
+}
 
 @end

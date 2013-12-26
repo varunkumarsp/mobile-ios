@@ -13,6 +13,8 @@
 #import "defines.h"
 #import "SocialActivityDetailsProxy.h"
 #import "EmptyView.h"
+#import "UserProfileDetailViewController_iPhone.h"
+#import "AppDelegate_iPhone.h"
 
 #define kLikersViewTopBottomMargin 10.0
 #define kLikersViewLeftRightMargin 10.0
@@ -141,7 +143,8 @@
     float columnY = kLikersViewTopBottomMargin;
     
     for (SocialUserProfile *user in self.socialActivity.likedByIdentities) {
-        EGOImageView *avatarView = [self newAvatarView];
+        AvatarView *avatarView = [self newAvatarView];
+        avatarView.userProfile = user;
         avatarView.imageURL = [NSURL URLWithString:user.avatarUrl];
         // update position of avatar
         avatarView.frame = CGRectMake(kLikersViewLeftRightMargin + (avatarWidth + kLikersViewPadding) * columnCount, columnY, avatarWidth, avatarWidth);
@@ -158,6 +161,12 @@
             columnCount = 0;
             columnY = label.frame.origin.y + label.frame.size.height + kLikersViewPadding;
         }
+        
+        //Add gesture recognizer
+        avatarView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tabHandle:)];
+        [avatarView addGestureRecognizer:tapRecognizer];
+        
         
         [self.avatarViews addObject:avatarView];
         [self.view addSubview:avatarView];
@@ -209,6 +218,25 @@
 
 - (void)proxy:(SocialProxy *)proxy didFailWithError:(NSError *)error {
     
+}
+
+#pragma mark - gesture recognizer method
+-(void) tabHandle: (UITapGestureRecognizer *) tapRecognizer
+{
+    AvatarView *avatar = (AvatarView *)tapRecognizer.view;
+    [self showDetailUserProfile:avatar.userProfile.remoteId];
+    
+}
+
+-(void) showDetailUserProfile:(NSString *)userId
+{
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        
+    } else {
+        UserProfileDetailViewController_iPhone *profile = [[UserProfileDetailViewController_iPhone alloc] initWithNibName:@"UserProfileDetailViewController_iPhone" bundle:nil];
+        profile.userId = userId;
+        [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:profile animated:YES];
+    }
 }
 
 @end
