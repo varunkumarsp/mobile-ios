@@ -17,7 +17,7 @@
 #import "JTRevealSidebarView.h"
 #import "JTNavigationView.h"
 #import "ActivityHelper.h"
-#import "ActivityLikersViewController.h"
+
 #import "ActivityDetailLikeTableViewCell.h"
 #import "ActivityDetailCommentTableViewCell.h"
 #import "EmptyView.h"
@@ -229,6 +229,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {        
         ActivityLikersViewController *likersView = [[[ActivityLikersViewController alloc] init] autorelease];
+        likersView.delegate = self;
         likersView.socialActivity = self.socialActivity;
         NSString *likerLabel = (self.socialActivity.totalNumberOfLikes <= 1) ? @"numOfLiker" : @"numOfLikers";
         likersView.view.title = [NSString stringWithFormat:Localize(likerLabel), self.socialActivity.totalNumberOfLikes];
@@ -275,6 +276,17 @@
     UserProfileDetailViewController_iPhone *profile = [[UserProfileDetailViewController_iPhone alloc] initWithNibName:@"UserProfileDetailViewController_iPhone" bundle:nil];
     profile.userId = userId;
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:profile animated:YES];
+}
+
+#pragma mark - ActivityLikerDelegate
+
+-(void) showDetailUserProfileFromLikerView:(NSString *)userId {
+    
+    
+   UserProfileDetailViewController_iPhone *profile = [[UserProfileDetailViewController_iPhone alloc] initWithNibName:@"UserProfileDetailViewController_iPhone" bundle:nil];
+   profile.userId = userId;
+   [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:profile animated:YES];
+
 }
 
 @end

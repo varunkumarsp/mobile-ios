@@ -9,6 +9,7 @@
 #import "UserProfileDetailViewController_iPhone.h"
 #import "JTRevealSidebarView.h"
 #import "JTNavigationView.h"
+#import "AppDelegate_iPhone.h"
 
 @interface UserProfileDetailViewController_iPhone ()
 
@@ -30,6 +31,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.view.title = self.title;
+    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationItem.rightBarButtonItem = nil;
 }
 
 - (void)didReceiveMemoryWarning

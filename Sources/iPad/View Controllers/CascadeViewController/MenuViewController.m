@@ -17,6 +17,8 @@
 #import "DashboardViewController_iPad.h"
 
 
+
+
 #define kCellText @"CellText"
 #define kCellImage @"CellImage"
 
@@ -100,6 +102,7 @@
     self.userProfileViewController = [[[UserProfileViewController alloc] initWithFrame:CGRectMake(0, 0, viewBounds.size.width, kMenuViewHeaderHeight)] autorelease];
     self.userProfileViewController.username = [SocialRestConfiguration sharedInstance].username;
     [self.userProfileViewController startUpdateCurrentUserProfile];
+    self.userProfileViewController.delegate = self;
     [self.view addSubview:self.userProfileViewController.view];
     
     
@@ -202,13 +205,9 @@
     iPadSettingViewController.settingsDelegate = self;
    
     [iPadSettingViewController startRetrieve];
-    if (_modalNavigationSettingViewController == nil) 
-    {
-        _modalNavigationSettingViewController = [[eXoNavigationController alloc] initWithRootViewController:iPadSettingViewController];
-        _modalNavigationSettingViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        _modalNavigationSettingViewController.modalPresentationStyle = UIModalPresentationFormSheet;
-        
-    }
+    _modalNavigationSettingViewController = [[eXoNavigationController alloc] initWithRootViewController:iPadSettingViewController];
+    _modalNavigationSettingViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    _modalNavigationSettingViewController.modalPresentationStyle = UIModalPresentationFormSheet;
     [self presentModalViewController:_modalNavigationSettingViewController animated:YES];
 
 }
@@ -368,6 +367,7 @@
     if (selectedIndex.row == EXO_DOCUMENTS_ROW)
         [self initAndSelectDocumentsViewController];
     [_modalNavigationSettingViewController dismissModalViewControllerAnimated:YES];
+    [_modalNavigationSettingViewController release];
 }
 
 #pragma mark - change language management
@@ -387,6 +387,29 @@
     [_tableView reloadData];
     // Reselect the previously selected menu item
     [_tableView selectRowAtIndexPath:selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
+}
+
+#pragma mark UserProfileDelegate
+-(void) showUserProfileDetailWithUserId:(NSString *)userId
+{
+    UserProfileDetailViewController_iPad *profile = [[UserProfileDetailViewController_iPad alloc] initWithNibName:@"UserProfileDetailViewController_iPad" bundle:nil] ;
+    profile.userId = userId;
+    profile.delegate = self;
+    
+    
+    _modalNavigationSettingViewController = [[eXoNavigationController alloc] initWithRootViewController:profile];
+    _modalNavigationSettingViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    _modalNavigationSettingViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+        
+    
+    [self presentModalViewController:_modalNavigationSettingViewController animated:YES];
+    
+}
+
+#pragma mark - UserProfileIpad delegate
+-(void) exitProfileView {
+    [_modalNavigationSettingViewController dismissModalViewControllerAnimated:YES];
+    [_modalNavigationSettingViewController release];
 }
 
 @end

@@ -192,7 +192,7 @@ static NSString *kTabTitle = @"kTapTitle";
 static NSString *kTabImageName = @"kTapImageName";
 static NSString *kTabItem = @"kTabItem";
 
-@interface ActivityDetailAdvancedInfoController_iPad () {
+@interface ActivityDetailAdvancedInfoController_iPad ()<ActivityDetailCommentTableViewCellDelegate,ActivityLikersDelegate> {
     ActivityAdvancedInfoCellTab _selectedTab;
     NSArray *_dataSourceArray;
 }
@@ -212,6 +212,7 @@ static NSString *kTabItem = @"kTabItem";
 @synthesize delegateToProcessClickAction = _delegateToProcessClickAction;
 
 - (void)dealloc {
+    
     [_tabView release];
     [_infoView release];
     [_socialActivity release];
@@ -313,6 +314,7 @@ static NSString *kTabItem = @"kTabItem";
         _likersViewController.view.backgroundColor = [UIColor clearColor];
         _likersViewController.view.layer.cornerRadius = kInfoViewCornerRadius;
         _likersViewController.view.clipsToBounds = YES;
+        _likersViewController.delegate = self;
     }
     return _likersViewController;
 }
@@ -464,6 +466,7 @@ static NSString *kTabItem = @"kTabItem";
         SocialComment* socialComment = [self.socialActivity.comments objectAtIndex:indexPath.row];
         [cell setSocialComment:socialComment];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.delegate = self;
         return cell;        
     } else if (_selectedTab == ActivityAdvancedInfoCellTabLike) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kIdentifierActivityDetailLikersTableViewCell];
@@ -534,6 +537,40 @@ static NSString *kTabItem = @"kTabItem";
     [_commentButton setTitle:Localize(@"YourComment") forState:UIControlStateNormal];
     // The empty view label (no comment or like)
     [self.emptyView setLabelContent:Localize(@"NoComment")];
+}
+
+-(void) showDetailUserProfileFromComment:(NSString *)userId {
+    UserProfileDetailViewController_iPad *profile = [[UserProfileDetailViewController_iPad alloc] initWithNibName:@"UserProfileDetailViewController_iPad" bundle:nil] ;
+    profile.userId = userId;
+    profile.delegate = self;
+    
+    
+    _modalNavigationProfileViewController = [[eXoNavigationController alloc] initWithRootViewController:profile];
+    _modalNavigationProfileViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    _modalNavigationProfileViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+    
+    
+    [self presentModalViewController:_modalNavigationProfileViewController animated:YES];
+}
+
+#pragma mark - UserProfileIpad delegate
+-(void) exitProfileView {
+    [_modalNavigationProfileViewController dismissModalViewControllerAnimated:YES];
+    [_modalNavigationProfileViewController release];
+}
+
+-(void) showDetailUserProfileFromLikerView:(NSString *)userId {
+    UserProfileDetailViewController_iPad *profile = [[UserProfileDetailViewController_iPad alloc] initWithNibName:@"UserProfileDetailViewController_iPad" bundle:nil] ;
+    profile.userId = userId;
+    profile.delegate = self;
+    
+    
+    _modalNavigationProfileViewController = [[eXoNavigationController alloc] initWithRootViewController:profile];
+    _modalNavigationProfileViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    _modalNavigationProfileViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+    
+    
+    [self presentModalViewController:_modalNavigationProfileViewController animated:YES];
 }
 
 @end

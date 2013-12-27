@@ -29,6 +29,7 @@
 @synthesize advancedInfoController = _advancedInfoController;
 
 - (void)dealloc {
+    [_modalNavigationProfileViewController release];
     [_extraActionsCell release];
     [_advancedInfoController release];
     [super dealloc];
@@ -286,6 +287,28 @@
     [self.advancedInfoController updateLabelsWithNewLanguage];
     [_tblvActivityDetail reloadData];
     [self.view setNeedsDisplay];
+}
+
+#pragma mark - Basictableview cell delegate
+-(void) showDetailUserProfile:(NSString *)userId
+{
+    UserProfileDetailViewController_iPad *profile = [[UserProfileDetailViewController_iPad alloc] initWithNibName:@"UserProfileDetailViewController_iPad" bundle:nil] ;
+    profile.userId = userId;
+    profile.delegate = self;
+    
+    
+    _modalNavigationProfileViewController = [[eXoNavigationController alloc] initWithRootViewController:profile];
+    _modalNavigationProfileViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    _modalNavigationProfileViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+    
+    
+    [self presentModalViewController:_modalNavigationProfileViewController animated:YES];
+}
+
+#pragma mark - UserProfileIpad delegate
+-(void) exitProfileView {
+    [_modalNavigationProfileViewController dismissModalViewControllerAnimated:YES];
+    [_modalNavigationProfileViewController release];
 }
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "UserProfileDetailViewController.h"
-#import "AppDelegate_iPhone.h"
+
 #import "AvatarView.h"
 #import "EmptyView.h"
 #import "defines.h"
@@ -24,6 +24,30 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _lastActivityDescription.layer.borderColor = [[UIColor blackColor]CGColor];
+        _lastActivityDescription.layer.borderWidth =0.5;
+        NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:@"Default text"];
+        [attributeString addAttribute:NSUnderlineStyleAttributeName
+                                value:[NSNumber numberWithInt:1]
+                                range:(NSRange){0,[attributeString length]}];
+        _emailLbl.attributedText = [attributeString copy];
+        _phoneLbl.attributedText = [attributeString copy];
+        _skypeLbl.attributedText = [attributeString copy];
+        
+        _emailLbl.userInteractionEnabled = YES;
+        _phoneLbl.userInteractionEnabled = YES;
+        _skypeLbl.userInteractionEnabled = YES;
+        
+        UITapGestureRecognizer *emailTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTab:)];
+        [_emailLbl addGestureRecognizer:emailTap];
+        
+        UITapGestureRecognizer *phoneTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTab:)];
+        [_phoneLbl addGestureRecognizer:phoneTap];
+        
+        UITapGestureRecognizer *skypeTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTab:)];
+        [_skypeLbl addGestureRecognizer:skypeTap];
+        
+        
     }
     return self;
 }
@@ -35,40 +59,15 @@
     self.title = @"User profile";
     self.view.backgroundColor = EXO_BACKGROUND_COLOR;
     [self emptyState];
-    [AppDelegate_iPhone instance].homeSidebarViewController_iPhone.contentNavigationItem.rightBarButtonItem = nil;
+    
     [self.view addSubview:self.hudLoadWaitingWithPositionUpdated.view];
     [self displayHudLoader];
-    
-    _lastActivityDescription.layer.borderColor = [[UIColor blackColor]CGColor];
-    _lastActivityDescription.layer.borderWidth =0.5;
-    NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:@"Default text"];
-    [attributeString addAttribute:NSUnderlineStyleAttributeName
-                            value:[NSNumber numberWithInt:1]
-                            range:(NSRange){0,[attributeString length]}];
-    _emailLbl.attributedText = [attributeString copy];
-    _phoneLbl.attributedText = [attributeString copy];
-    _skypeLbl.attributedText = [attributeString copy];
-    
-    _emailLbl.userInteractionEnabled = YES;
-    _phoneLbl.userInteractionEnabled = YES;
-    _skypeLbl.userInteractionEnabled = YES;
-    
-    UITapGestureRecognizer *emailTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTab:)];
-    [_emailLbl addGestureRecognizer:emailTap];
-    
-    UITapGestureRecognizer *phoneTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTab:)];
-    [_phoneLbl addGestureRecognizer:phoneTap];
-    
-    UITapGestureRecognizer *skypeTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTab:)];
-    [_skypeLbl addGestureRecognizer:skypeTap];
     
     UserProfileProxy *proxy = [[UserProfileProxy alloc] init];
     proxy.delegate = self;
     if (userId) {
         [proxy getUserProfileFromUserId:userId];
     }
-    
-    
     
 }
 
@@ -89,6 +88,12 @@
     [_skypeLbl release];
     [_relationshipStatus release];
     [super dealloc];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 #pragma mark - handle tab

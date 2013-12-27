@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "JMTabView.h"
+#import "eXoNavigationController.h"
+#import "UserProfileDetailViewController_iPad.h"
 
 @class SocialActivity;
 @class ActivityLikersViewController;
@@ -18,7 +20,9 @@ typedef enum {
     ActivityAdvancedInfoCellTabLike = 1
 } ActivityAdvancedInfoCellTab;
 
-@interface ActivityDetailAdvancedInfoController_iPad : UIViewController <JMTabViewDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface ActivityDetailAdvancedInfoController_iPad : UIViewController <JMTabViewDelegate, UITableViewDelegate, UITableViewDataSource,UserProfileDetailIpadDelegate> {
+    eXoNavigationController*         _modalNavigationProfileViewController;
+}
 
 @property (nonatomic, retain) JMTabView *tabView;
 @property (nonatomic, retain) UITableView *infoView;

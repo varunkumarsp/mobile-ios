@@ -8,13 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "ActivityDetailViewController.h"
+#import "ActivityLikersViewController.h"
 
 
 @class ActivityStreamBrowseViewController;
 @class ActivityDetailLikeTableViewCell;
 
 
-@interface ActivityDetailViewController_iPhone : ActivityDetailViewController {
+@interface ActivityDetailViewController_iPhone : ActivityDetailViewController<ActivityLikersDelegate> {
 
 }
 

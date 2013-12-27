@@ -8,11 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "ActivityDetailViewController.h"
+#import "eXoNavigationController.h"
+#import "UserProfileDetailViewController_iPad.h"
 
 @class ActivityDetailExtraActionsCell;
 @class ActivityDetailAdvancedInfoController_iPad;
 
-@interface ActivityDetailViewController_iPad : ActivityDetailViewController 
+@interface ActivityDetailViewController_iPad : ActivityDetailViewController <UserProfileDetailIpadDelegate> {
+    eXoNavigationController*         _modalNavigationProfileViewController;
+}
 
 @property (nonatomic, retain) ActivityDetailExtraActionsCell *extraActionsCell;
 @property (nonatomic, retain) ActivityDetailAdvancedInfoController_iPad *advancedInfoController;

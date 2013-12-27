@@ -153,6 +153,8 @@
 		3D34F9FC18696EB9006065DE /* UserProfileDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D34F9FB18696EB9006065DE /* UserProfileDetailViewController.m */; };
 		3D34FA0018697898006065DE /* UserProfileDetailViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D34F9FE18697898006065DE /* UserProfileDetailViewController_iPhone.m */; };
 		3D34FA0118697898006065DE /* UserProfileDetailViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D34F9FF18697898006065DE /* UserProfileDetailViewController_iPhone.xib */; };
+		3D34FA05186D2183006065DE /* UserProfileDetailViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D34FA03186D2183006065DE /* UserProfileDetailViewController_iPad.m */; };
+		3D34FA06186D2183006065DE /* UserProfileDetailViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D34FA04186D2183006065DE /* UserProfileDetailViewController_iPad.xib */; };
 		3D7E19801855AB8300CCF6A8 /* UIImage+BlankImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7E197F1855AB8300CCF6A8 /* UIImage+BlankImage.m */; };
 		3D8ED7F4184DBB3F00BEA544 /* UINavigationBar+ BackButtonDisplayFix.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8ED7F3184DBB3E00BEA544 /* UINavigationBar+ BackButtonDisplayFix.m */; };
 		46073660137BD27400D77DB9 /* UINavigationBar+eXoCustomIphone.m in Sources */ = {isa = PBXBuildFile; fileRef = 4607365F137BD27400D77DB9 /* UINavigationBar+eXoCustomIphone.m */; };
@@ -1143,6 +1145,9 @@
 		3D34F9FD18697898006065DE /* UserProfileDetailViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileDetailViewController_iPhone.h; sourceTree = SOURCE_ROOT; };
 		3D34F9FE18697898006065DE /* UserProfileDetailViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileDetailViewController_iPhone.m; sourceTree = SOURCE_ROOT; };
 		3D34F9FF18697898006065DE /* UserProfileDetailViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileDetailViewController_iPhone.xib; sourceTree = SOURCE_ROOT; };
+		3D34FA02186D2183006065DE /* UserProfileDetailViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileDetailViewController_iPad.h; sourceTree = "<group>"; };
+		3D34FA03186D2183006065DE /* UserProfileDetailViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileDetailViewController_iPad.m; sourceTree = "<group>"; };
+		3D34FA04186D2183006065DE /* UserProfileDetailViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileDetailViewController_iPad.xib; sourceTree = "<group>"; };
 		3D7E197E1855AB8300CCF6A8 /* UIImage+BlankImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BlankImage.h"; sourceTree = "<group>"; };
 		3D7E197F1855AB8300CCF6A8 /* UIImage+BlankImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BlankImage.m"; sourceTree = "<group>"; };
 		3D8ED7F2184DBB3E00BEA544 /* UINavigationBar+ BackButtonDisplayFix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+ BackButtonDisplayFix.h"; sourceTree = "<group>"; };
@@ -2623,6 +2628,9 @@
 				46A08CDE144750CA00D53314 /* ActivityLinkDisplayViewController_iPad.xib */,
 				A6B8CF1F1580869900A43552 /* ActivityDetailAdvancedInfoController_iPad.h */,
 				A6B8CF201580869900A43552 /* ActivityDetailAdvancedInfoController_iPad.m */,
+				3D34FA02186D2183006065DE /* UserProfileDetailViewController_iPad.h */,
+				3D34FA03186D2183006065DE /* UserProfileDetailViewController_iPad.m */,
+				3D34FA04186D2183006065DE /* UserProfileDetailViewController_iPad.xib */,
 			);
 			name = Social;
 			sourceTree = "<group>";
@@ -4698,6 +4706,7 @@
 				46E91D901393E30500A35D5A /* CustomBackgroundForCellSingleSelected.png in Resources */,
 				46E91D911393E30500A35D5A /* CustomBackgroundForCellTopSelected.png in Resources */,
 				46E91D961393E31900A35D5A /* CustomBackgroundForCellBottomSelected@2x.png in Resources */,
+				3D34FA06186D2183006065DE /* UserProfileDetailViewController_iPad.xib in Resources */,
 				46E91D971393E31900A35D5A /* CustomBackgroundForCellMiddleSelected@2x.png in Resources */,
 				46E91D981393E31900A35D5A /* CustomBackgroundForCellSingleSelected@2x.png in Resources */,
 				46E91D991393E31900A35D5A /* CustomBackgroundForCellTopSelected@2x.png in Resources */,
@@ -5206,6 +5215,7 @@
 				46DDC5AD13D764470026D036 /* SocialLike.m in Sources */,
 				46A2739713D7FBAE00A5C29D /* NSString+MD5.m in Sources */,
 				462B62A713DEF7970050FCBC /* PlatformServerVersion.m in Sources */,
+				3D34FA05186D2183006065DE /* UserProfileDetailViewController_iPad.m in Sources */,
 				46982F3B13E701900063CF62 /* EGORefreshTableHeaderView.m in Sources */,
 				464636DF13EC228800092723 /* SocialUserProfileCache.m in Sources */,
 				7C3DF00913F1217200640BDB /* PhotoActionViewController.m in Sources */,

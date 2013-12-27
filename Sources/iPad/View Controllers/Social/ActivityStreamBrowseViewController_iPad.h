@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "ActivityStreamBrowseViewController.h"
+#import "eXoNavigationController.h"
+#import "UserProfileDetailViewController_iPad.h"
 
-@interface ActivityStreamBrowseViewController_iPad : ActivityStreamBrowseViewController {
+@interface ActivityStreamBrowseViewController_iPad : ActivityStreamBrowseViewController<UserProfileDetailIpadDelegate> {
     
     //IBOutlet UINavigationBar*           _navigation;
+    eXoNavigationController*         _modalNavigationProfileViewController;
 }
 
 @end

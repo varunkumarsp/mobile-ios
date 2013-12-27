@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EGORefreshTableHeaderView.h"
 #import "SocialProxy.h"
+@protocol ActivityLikersDelegate;
 
 @class SocialActivity;
 
@@ -16,9 +17,16 @@
 
 @property (nonatomic, retain) SocialActivity *socialActivity;
 @property (nonatomic, retain) UILabel *likersHeader;
+@property (nonatomic, assign) id<ActivityLikersDelegate> delegate;
 
 - (void)updateLikerViews;
 - (void)updateListOfLikers;
 -(void) showDetailUserProfile:(NSString *)userId;
+
+@end
+
+@protocol ActivityLikersDelegate <NSObject>
+
+-(void) showDetailUserProfileFromLikerView :(NSString *) userId;
 
 @end

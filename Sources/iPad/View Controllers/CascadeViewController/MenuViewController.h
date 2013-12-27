@@ -9,14 +9,16 @@
 #import <UIKit/UIKit.h> 
 #import "SettingsViewController_iPad.h"
 #import "eXoNavigationController.h"
+#import "UserProfileViewController.h"
+#import "UserProfileDetailViewController_iPad.h"
 
 #define EXO_ACTIVITY_STREAM_ROW 0
 #define EXO_DOCUMENTS_ROW 1
 #define EXO_DASHBOARD_ROW 2
 
-@class UserProfileViewController;
 
-@interface MenuViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SettingsDelegateProcotol> {
+
+@interface MenuViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, SettingsDelegateProcotol,UserProfileDelegate,UserProfileDetailIpadDelegate> {
 	
     
 	UITableView*  _tableView;

@@ -25,6 +25,7 @@
 @implementation ActivityStreamBrowseViewController_iPad
 
 - (void)dealloc{
+    [_modalNavigationProfileViewController release];
     [super dealloc];
 }
 
@@ -191,5 +192,28 @@
     [super updateLabelsWithNewLanguage];
     _navigation.topItem.title = Localize(@"News");
 }
+
+#pragma mark - Basictableview cell delegate 
+-(void) showDetailUserProfile:(NSString *)userId
+{
+    UserProfileDetailViewController_iPad *profile = [[UserProfileDetailViewController_iPad alloc] initWithNibName:@"UserProfileDetailViewController_iPad" bundle:nil] ;
+    profile.userId = userId;
+    profile.delegate = self;
+    
+    
+    _modalNavigationProfileViewController = [[eXoNavigationController alloc] initWithRootViewController:profile];
+    _modalNavigationProfileViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    _modalNavigationProfileViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+        
+    
+    [self presentModalViewController:_modalNavigationProfileViewController animated:YES];
+}
+
+#pragma mark - UserProfileIpad delegate
+-(void) exitProfileView {
+    [_modalNavigationProfileViewController dismissModalViewControllerAnimated:YES];
+    [_modalNavigationProfileViewController release];
+}
+
 
 @end

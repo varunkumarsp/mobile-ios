@@ -43,6 +43,7 @@
 @synthesize likersHeader = _likersHeader;
 @synthesize noLikerView = _noLikerView;
 @synthesize activityDetailsProxy = _activityDetailsProxy;
+@synthesize delegate;
 
 - (void)dealloc {
     [_activityDetailsProxy release];
@@ -230,13 +231,11 @@
 
 -(void) showDetailUserProfile:(NSString *)userId
 {
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        
-    } else {
-        UserProfileDetailViewController_iPhone *profile = [[UserProfileDetailViewController_iPhone alloc] initWithNibName:@"UserProfileDetailViewController_iPhone" bundle:nil];
-        profile.userId = userId;
-        [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:profile animated:YES];
+    
+    if (delegate && [delegate respondsToSelector:@selector(showDetailUserProfileFromLikerView:)]) {
+        [delegate showDetailUserProfileFromLikerView:userId];
     }
+
 }
 
 @end
