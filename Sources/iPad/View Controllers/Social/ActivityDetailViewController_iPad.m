@@ -29,7 +29,7 @@
 @synthesize advancedInfoController = _advancedInfoController;
 
 - (void)dealloc {
-    [_modalNavigationProfileViewController release];
+    
     [_extraActionsCell release];
     [_advancedInfoController release];
     [super dealloc];

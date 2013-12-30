@@ -25,7 +25,7 @@
 @implementation ActivityStreamBrowseViewController_iPad
 
 - (void)dealloc{
-    [_modalNavigationProfileViewController release];
+    
     [super dealloc];
 }
 
