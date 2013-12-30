@@ -275,6 +275,7 @@
         _advancedInfoController = [[ActivityDetailAdvancedInfoController_iPad alloc] init];
         [_advancedInfoController.commentButton addTarget:self action:@selector(onBtnMessageComposer) forControlEvents:UIControlEventTouchUpInside];
         _advancedInfoController.delegateToProcessClickAction = self;
+        _advancedInfoController.invokeViewController = self;
     }
     return _advancedInfoController;
 }
@@ -295,6 +296,8 @@
     UserProfileDetailViewController_iPad *profile = [[UserProfileDetailViewController_iPad alloc] initWithNibName:@"UserProfileDetailViewController_iPad" bundle:nil] ;
     profile.userId = userId;
     profile.delegate = self;
+    profile.invoker = self;
+    profile.isMenu = FALSE;
     
     
     _modalNavigationProfileViewController = [[eXoNavigationController alloc] initWithRootViewController:profile];

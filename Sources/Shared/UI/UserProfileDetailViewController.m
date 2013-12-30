@@ -24,8 +24,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        _lastActivityDescription.layer.borderColor = [[UIColor blackColor]CGColor];
-        _lastActivityDescription.layer.borderWidth =0.5;
+        
         NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:@"Default text"];
         [attributeString addAttribute:NSUnderlineStyleAttributeName
                                 value:[NSNumber numberWithInt:1]
@@ -68,7 +67,7 @@
     if (userId) {
         [proxy getUserProfileFromUserId:userId];
     }
-    
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -83,10 +82,10 @@
     [_fullNameLbl release];
     [_positionLbl release];
     [_emailLbl release];
-    [_lastActivityDescription release];
     [_phoneLbl release];
     [_skypeLbl release];
     [_relationshipStatus release];
+    [_lastActivityTitle release];
     [super dealloc];
 }
 
@@ -148,11 +147,13 @@
     
     [self setTextForLabel:_relationshipStatus value:userProfileProxy.userProfile.relationshipStatus];
     
-    if ([self isExist:userProfileProxy.userProfile.activityTitle]) {
-        _lastActivityDescription.text = [NSString stringWithFormat:@"%@ said : %@",userProfileProxy.userProfile.fullName,userProfileProxy.userProfile.activityTitle ];
+    if (userProfileProxy.userProfile.activityTitle) {
+        [_lastActivityTitle setText:[NSString stringWithFormat:@"%@ said : %@",userProfileProxy.userProfile.fullName,userProfileProxy.userProfile.activityTitle ]];
     } else {
-        _lastActivityDescription.text = @"No activity";
+        _lastActivityTitle.hidden = YES;
     }
+    
+    
     
     [self setTextForLabel:_emailLbl value:userProfileProxy.userProfile.email];
     [self setTextForLabel:_skypeLbl value:userProfileProxy.userProfile.skype];
@@ -231,5 +232,7 @@
     [self.view addSubview:emptyView];
     [emptyView release];
 }
+
+
 
 @end

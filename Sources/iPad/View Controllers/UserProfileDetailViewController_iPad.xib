@@ -10,7 +10,6 @@
                 <outlet property="_avatar" destination="qcq-OD-eQ2" id="fPh-hZ-FLC"/>
                 <outlet property="_emailLbl" destination="e3V-cC-2B2" id="7I2-u8-ZXM"/>
                 <outlet property="_fullNameLbl" destination="yKq-pW-OQa" id="y6x-0J-a9c"/>
-                <outlet property="_lastActivityDescription" destination="PEy-Lm-fV9" id="NhO-Yl-y83"/>
                 <outlet property="_phoneLbl" destination="D0R-ty-PDJ" id="cAA-xt-dOB"/>
                 <outlet property="_phoneTitleLbl" destination="dZo-Qe-4hQ" id="x1H-nh-nd4"/>
                 <outlet property="_positionLbl" destination="1l9-QR-8cy" id="JNW-ET-86q"/>
@@ -48,20 +47,6 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PEy-Lm-fV9">
-                    <rect key="frame" x="20" y="278" width="250" height="205"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <attributedString key="attributedText">
-                        <fragment content="Last activity">
-                            <attributes>
-                                <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <font key="NSFont" size="13" name="HelveticaNeue"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                            </attributes>
-                        </fragment>
-                    </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Relationship status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ald-5x-aB0">

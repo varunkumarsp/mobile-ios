@@ -210,9 +210,10 @@ static NSString *kTabItem = @"kTabItem";
 @synthesize commentButton = _commentButton;
 @synthesize infoContainer = _infoContainer;
 @synthesize delegateToProcessClickAction = _delegateToProcessClickAction;
+@synthesize invokeViewController;
 
 - (void)dealloc {
-    
+    [invokeViewController release];
     [_tabView release];
     [_infoView release];
     [_socialActivity release];
@@ -543,6 +544,8 @@ static NSString *kTabItem = @"kTabItem";
     UserProfileDetailViewController_iPad *profile = [[UserProfileDetailViewController_iPad alloc] initWithNibName:@"UserProfileDetailViewController_iPad" bundle:nil] ;
     profile.userId = userId;
     profile.delegate = self;
+    profile.invoker = self.invokeViewController;
+    profile.isMenu = FALSE;
     
     
     _modalNavigationProfileViewController = [[eXoNavigationController alloc] initWithRootViewController:profile];
@@ -563,7 +566,8 @@ static NSString *kTabItem = @"kTabItem";
     UserProfileDetailViewController_iPad *profile = [[UserProfileDetailViewController_iPad alloc] initWithNibName:@"UserProfileDetailViewController_iPad" bundle:nil] ;
     profile.userId = userId;
     profile.delegate = self;
-    
+    profile.invoker = self.invokeViewController;
+    profile.isMenu = FALSE;
     
     _modalNavigationProfileViewController = [[eXoNavigationController alloc] initWithRootViewController:profile];
     _modalNavigationProfileViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;

@@ -199,6 +199,8 @@
     UserProfileDetailViewController_iPad *profile = [[UserProfileDetailViewController_iPad alloc] initWithNibName:@"UserProfileDetailViewController_iPad" bundle:nil] ;
     profile.userId = userId;
     profile.delegate = self;
+    profile.invoker = self;
+    profile.isMenu = FALSE;
     
     
     _modalNavigationProfileViewController = [[eXoNavigationController alloc] initWithRootViewController:profile];

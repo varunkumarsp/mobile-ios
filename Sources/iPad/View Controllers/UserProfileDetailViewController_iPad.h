@@ -13,11 +13,13 @@
 @interface UserProfileDetailViewController_iPad : UserProfileDetailViewController
 
 @property (nonatomic, assign) id<UserProfileDetailIpadDelegate> delegate;
+@property (nonatomic, assign) UIViewController *invoker;
+@property (nonatomic) BOOL isMenu;
 
 @end
 
 @protocol UserProfileDetailIpadDelegate <NSObject>
-
+@required
 -(void) exitProfileView;
 
 @end

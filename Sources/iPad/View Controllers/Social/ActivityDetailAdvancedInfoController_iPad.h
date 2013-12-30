@@ -32,6 +32,7 @@ typedef enum {
 @property (nonatomic, retain) UIButton *commentButton;
 @property (nonatomic, retain) UIView *infoContainer;
 @property (nonatomic, assign) id<UIWebViewDelegate> delegateToProcessClickAction;
+@property (nonatomic, assign) UIViewController *invokeViewController;
 
 // this method is used to update value for subviews
 - (void)updateSubViews;
