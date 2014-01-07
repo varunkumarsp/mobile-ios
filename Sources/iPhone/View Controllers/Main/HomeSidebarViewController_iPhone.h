@@ -41,5 +41,6 @@ typedef enum {
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated;
 - (void)setRootViewController:(UIViewController *)viewController animated:(BOOL)animated;
 - (void)updateLabelsWithNewLanguage;
+-(void) setContentNavigationTitle : (NSString *) title;
 
 @end

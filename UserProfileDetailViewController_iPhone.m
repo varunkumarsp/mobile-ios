@@ -62,4 +62,10 @@
     [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone pushViewController:linkWebViewController animated:YES];
 }
 
+-(void) UserProfileProxyDidFinish:(UserProfileProxy *)userProfileProxy
+{
+    [super UserProfileProxyDidFinish:userProfileProxy];
+    [[AppDelegate_iPhone instance].homeSidebarViewController_iPhone setContentNavigationTitle:self.title];
+}
+
 @end

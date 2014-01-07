@@ -162,6 +162,10 @@
     [self insertSubview:_rootView atIndex:0];
 }
 
+-(void) setJTNavigationTitle : (NSString *)title {
+    _navigationBar.topItem.title = title;
+}
+
 // Auto stretching the views to fit the visible bounds
 - (void)layoutSubviews {
     int yOffset = _navigationViewFlags.isNavigationBarHidden ? 0 : DEFAULT_NAVIGATION_BAR_HEIGHT;
