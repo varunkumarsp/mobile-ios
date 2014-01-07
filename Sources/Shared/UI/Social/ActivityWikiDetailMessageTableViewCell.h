@@ -12,9 +12,11 @@
 @interface ActivityWikiDetailMessageTableViewCell : ActivityDetailMessageTableViewCell{
     TTStyledTextLabel*                      _htmlMessage;
     TTStyledTextLabel*                      _htmlName;
+    TTStyledTextLabel*                      _htmlFullName;
     
     CGFloat width;
 }
 @property (retain, nonatomic) TTStyledTextLabel* htmlMessage;
 @property (retain, nonatomic) TTStyledTextLabel* htmlName;
+@property (retain, nonatomic) TTStyledTextLabel* htmlFullName;
 @end

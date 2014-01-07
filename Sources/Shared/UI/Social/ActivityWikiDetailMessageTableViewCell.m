@@ -16,6 +16,7 @@
 
 @synthesize htmlMessage = _htmlMessage;
 @synthesize htmlName = _htmlName;
+@synthesize htmlFullName = _htmlFullName;
 
 - (void)configureCellForSpecificContentWithWidth:(CGFloat)fWidth{
     CGRect tmpFrame = CGRectZero;
@@ -26,6 +27,14 @@
         tmpFrame = CGRectMake(67, 0, WIDTH_FOR_CONTENT_IPHONE, 21);
         width = WIDTH_FOR_CONTENT_IPHONE;
     }
+    
+    _htmlFullName = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
+    _htmlFullName.userInteractionEnabled = YES;
+    _htmlFullName.backgroundColor = [UIColor clearColor];
+    _htmlFullName.font = [UIFont systemFontOfSize:13.0];
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tabHandle:)];
+    [_htmlFullName addGestureRecognizer:tapRecognizer];
+    [self.contentView addSubview:_htmlFullName];
     
     _htmlName = [[TTStyledTextLabel alloc] initWithFrame:tmpFrame];
     _htmlName.userInteractionEnabled = NO;
@@ -59,6 +68,9 @@
     if([type isEqualToString:STREAM_TYPE_SPACE]) {
         space = [socialActivityDetail.activityStream valueForKey:@"fullName"];
     }
+    
+    _htmlFullName.html = [NSString stringWithFormat:@"%@",socialActivityDetail.posterIdentity.fullName];
+    [_htmlFullName sizeToFit];
     
     NSString *htmlStr = nil;
     NSDictionary *_templateParams = self.socialActivity.templateParams;
@@ -98,14 +110,31 @@
     [_htmlMessage sizeToFit];
     [_webViewForContent sizeToFit];
     
+    tmpFrame = _htmlFullName.frame;
+    CGSize sizeOfString = [_htmlFullName.html sizeWithFont:[UIFont systemFontOfSize:13]];
+    tmpFrame.size.width = sizeOfString.width;
+    tmpFrame.size.height = sizeOfString.height;
+    _htmlFullName.frame = tmpFrame;
+    _htmlFullName.html = @"";
+    [self bringSubviewToFront:_htmlFullName];
+    
     [self updateSizeToFitSubViews];
 }
 
 - (void)dealloc {
     [_htmlMessage release];
     _htmlMessage = nil;
-    
+    [_htmlFullName release];
+    _htmlFullName = nil;
     [super dealloc];
+}
+
+#pragma mark - tap handle
+
+-(void) tabHandle: (UITapGestureRecognizer *) tapRecognizer {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(showDetailUserProfile:)]) {
+        [self.delegate showDetailUserProfile:self.socialActivity.posterIdentity.remoteId ];
+    }
 }
 
 @end
