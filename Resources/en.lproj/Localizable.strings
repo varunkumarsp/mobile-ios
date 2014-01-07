@@ -216,3 +216,15 @@
 "My intranet"="My Intranet";
 "SignupInternalServerError"="The maximum number of users has been reached for your intranet, please contact your administrator";
 "NoTenantName"="There is no tenant name";
+
+/*
+ * User profile
+ */
+"UserProfile" = "User profile";
+"LoadingPleaseWait" = "Loading please wait";
+"CanNotOpenEmailMessage" = "Can not open this email";
+"CanNotCallSkypeMessage" = "Can not call this skype id";
+"CanNotCallPhoneMessage" = "Can not call this number";
+"said" = "said";
+"NotConnect" = "Not connect";
+"Connected" = "Connected";

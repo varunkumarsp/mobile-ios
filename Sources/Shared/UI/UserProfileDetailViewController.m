@@ -25,7 +25,7 @@
     if (self) {
         // Custom initialization
         
-        NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:@"Default text"];
+        NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:@""];
         [attributeString addAttribute:NSUnderlineStyleAttributeName
                                 value:[NSNumber numberWithInt:1]
                                 range:(NSRange){0,[attributeString length]}];
@@ -55,7 +55,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.title = @"User profile";
+    self.title = Localize(@"UserProfile");
     self.view.backgroundColor = EXO_BACKGROUND_COLOR;
     [self emptyState];
     
@@ -106,7 +106,7 @@
             [[UIApplication sharedApplication] openURL:skypeURL];
         } else {
             // Display to the user how to install skype.
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Error" message: @"Can not call this skype id" delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: Localize(@"Error") message: Localize(@"CanNotCallSkypeMessage") delegate: nil cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil];
             [alert show];
             [alert release];
         }
@@ -118,7 +118,7 @@
             [[UIApplication sharedApplication] openURL:mailURL];
         } else {
             // Display to the user how to install skype.
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Error" message: @"Can not open this email" delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: Localize(@"Error") message: Localize(@"CanNotOpenEmailMessage") delegate: nil cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil];
             [alert show];
             [alert release];
         }
@@ -131,7 +131,7 @@
             [[UIApplication sharedApplication] openURL:phoneURL];
         } else {
             // Display to the user how to install skype.
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Error" message: @"Can not call this number" delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: Localize(@"Error") message: Localize(@"CanNotCallPhoneMessage") delegate: nil cancelButtonTitle:Localize(@"OK") otherButtonTitles:nil];
             [alert show];
             [alert release];
         }
@@ -148,7 +148,7 @@
     [self setTextForLabel:_relationshipStatus value:userProfileProxy.userProfile.relationshipStatus];
     
     if (userProfileProxy.userProfile.activityTitle) {
-        [_lastActivityTitle setText:[NSString stringWithFormat:@"%@ said : %@",userProfileProxy.userProfile.fullName,userProfileProxy.userProfile.activityTitle ]];
+        [_lastActivityTitle setText:[NSString stringWithFormat:@"%@ %@ : %@",userProfileProxy.userProfile.fullName,Localize(@"said"),userProfileProxy.userProfile.activityTitle ]];
     } else {
         _lastActivityTitle.hidden = YES;
     }
@@ -195,10 +195,10 @@
                 _relationshipStatus.hidden = YES;
             }
             if ([alabel.text isEqual:@"alien"]) {
-                _relationshipStatus.text = @"Not connect";
+                _relationshipStatus.text = Localize(@"NotConnect");
             }
             if ([alabel.text isEqual:@"confirmed"]) {
-                _relationshipStatus.text = @"Connected";
+                _relationshipStatus.text = Localize(@"Connected");
             }
             
         }
@@ -226,7 +226,7 @@
 // Empty State
 -(void)emptyState {
     //add empty view to the view
-    EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"IconForEmptyFolder.png" andContent:@"EmptyProfile"];
+    EmptyView *emptyView = [[EmptyView alloc] initWithFrame:self.view.bounds withImageName:@"default-avatar.png" andContent:Localize(@"LoadingPleaseWait")];
     emptyView.backgroundColor = EXO_BACKGROUND_COLOR;
     emptyView.tag = TAG_EMPTY;
     [self.view addSubview:emptyView];
