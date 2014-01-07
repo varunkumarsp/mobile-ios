@@ -141,6 +141,7 @@
 #pragma mark - UserProfileDelegate
 -(void) UserProfileProxyDidFinish:(UserProfileProxy *)userProfileProxy
 {
+    self.title = userProfileProxy.userProfile.fullName;
     _fullNameLbl.text = userProfileProxy.userProfile.fullName;
     
     [self setTextForLabel:_positionLbl value:userProfileProxy.userProfile.position];
@@ -148,7 +149,7 @@
     [self setTextForLabel:_relationshipStatus value:userProfileProxy.userProfile.relationshipStatus];
     
     if (userProfileProxy.userProfile.activityTitle) {
-        [_lastActivityTitle setText:[NSString stringWithFormat:@"%@ %@ : %@",userProfileProxy.userProfile.fullName,Localize(@"said"),userProfileProxy.userProfile.activityTitle ]];
+        [_lastActivityTitle setText:[NSString stringWithFormat:@"<b>%@</b> <i>%@</i> :<br></br>%@",userProfileProxy.userProfile.fullName,Localize(@"said"),userProfileProxy.userProfile.activityTitle ]];
     } else {
         _lastActivityTitle.hidden = YES;
     }
