@@ -425,6 +425,7 @@
  Post Activity to Space
  */
 
+"Public" = "Vos Activités";
 
 "CannotLoadSpaceID" = "Impossible de charger les détails de l'espace";
 
