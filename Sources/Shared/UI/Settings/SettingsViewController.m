@@ -59,12 +59,14 @@ static NSString *CellIdentifierServerInformation = @"AuthenticateServerInformati
 
 #define kTagInCellForServerVersion 400
 
-@interface SettingsViewController ()
+@interface SettingsViewController () {
+    BOOL languageSectionHidden;
+}
 
 @property (nonatomic, retain) LoginProxy* plfVersionProxy;
 
--(void)setNavigationBarLabels;
-- (void)doInit;
+- (void)  setNavigationBarLabels;
+- (void) doInit;
 - (void) rememberMeDidChange:(id)sender;
 - (void) showPrivateDriveDidChange:(id)sender;
 - (void) rememberStreamDidChange:(id)sender;
@@ -250,6 +252,7 @@ typedef enum {
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:Localize(@"DoneButton") style:UIBarButtonItemStyleDone target:self action:@selector(doneAction)];
     
     self.title = Localize(@"Settings");
+    languageSectionHidden = YES;
 }
 
 #pragma mark - PlatformVersionProxyDelegate
@@ -355,6 +358,7 @@ typedef enum {
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+
 	// create the parent view that will hold header Label
 	UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(10.0, 0.0, 300.0, 44.0)];
 	
@@ -375,13 +379,41 @@ typedef enum {
 	[customView addSubview:headerLabel];
     [headerLabel release];
     
-	return customView;
+    
+    SettingViewControllerSection sectionId = [[[_listOfSections objectAtIndex:section] objectForKey:settingViewSectionIdKey] intValue];
+    if (sectionId == SettingViewControllerSectionLanguage) {
+        UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+        imageView.backgroundColor = [UIColor clearColor];
+        imageView.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 30, 12,20, 20);
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        
+        imageView.image = languageSectionHidden ? [UIImage imageNamed:@"popoverArrowRight.png"] : [UIImage imageNamed:@"popoverArrowDown.png"];
+        
+        [customView addSubview:imageView];
+        [imageView release];
+        
+        UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showHideLanguageSectionAction:)];
+        tapGesture.numberOfTapsRequired =1;
+        [customView addGestureRecognizer:tapGesture];
+        
+    }
+    
+    return customView;
 }
 
+-(void)showHideLanguageSectionAction:(id) sender {
+    languageSectionHidden = !languageSectionHidden;
+    [self.tableView reloadData];
+    
+}
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
+    SettingViewControllerSection sectionId = [[[_listOfSections objectAtIndex:section] objectForKey:settingViewSectionIdKey] intValue];
+    if (sectionId == SettingViewControllerSectionLanguage && languageSectionHidden) {
+        return 1;
+    }
     int numofRows = 0;
 	if([[[_listOfSections objectAtIndex:section] objectForKey:settingViewSectionIdKey] intValue] == SettingViewControllerSectionServerList)
 	{	
@@ -485,7 +517,25 @@ typedef enum {
                 
             }
             
-            switch (indexPath.row) {
+            int selectedLanguage = [[LanguageHelper sharedInstance] getSelectedLanguage];
+            int index;
+            if (languageSectionHidden) {
+                index = selectedLanguage;
+                cell.accessoryView = [self makeCheckmarkOnAccessoryView];
+            } else {
+                index = indexPath.row;
+                if (indexPath.row == selectedLanguage)
+                {
+                    cell.accessoryView = [self makeCheckmarkOnAccessoryView];
+                }
+                else
+                {
+                    cell.accessoryView = [self makeCheckmarkOffAccessoryView];
+                }
+            }
+            cell.textLabel.text = Localize([[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewRowsKey] objectAtIndex:index]);
+
+            switch (index) {
                 case 0:
                     cell.imageView.image = [UIImage imageNamed:@"EN.gif"];
                     break;
@@ -506,16 +556,6 @@ typedef enum {
                     break;
             }
             
-            //Put the checkmark
-            int selectedLanguage = [[LanguageHelper sharedInstance] getSelectedLanguage];
-            if (indexPath.row == selectedLanguage) 
-            {
-                cell.accessoryView = [self makeCheckmarkOnAccessoryView];
-            }
-            else
-            {
-                cell.accessoryView = [self makeCheckmarkOffAccessoryView];
-            }
             break;
         }
         case SettingViewControllerSectionServerList:
@@ -590,7 +630,7 @@ typedef enum {
         default:
             break;
     }
-    if (sectionId != SettingViewControllerSectionServerList) {
+    if (sectionId != SettingViewControllerSectionServerList && sectionId != SettingViewControllerSectionLanguage) {
         cell.textLabel.text = Localize([[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewRowsKey] objectAtIndex:indexPath.row]);
     
     }
@@ -605,9 +645,10 @@ typedef enum {
 {
     SettingViewControllerSection sectionId = [[[_listOfSections objectAtIndex:indexPath.section] objectForKey:settingViewSectionIdKey] intValue];
     eXoMobileAppDelegate *appDelegate;
-    if (sectionId == SettingViewControllerSectionLanguage)
+    if (sectionId == SettingViewControllerSectionLanguage && !languageSectionHidden)
 	{
-		int selectedLanguage = indexPath.row;
+        languageSectionHidden = YES;
+        int selectedLanguage = indexPath.row;
         
         //Save the language
         [[LanguageHelper sharedInstance] changeToLanguage:selectedLanguage];
